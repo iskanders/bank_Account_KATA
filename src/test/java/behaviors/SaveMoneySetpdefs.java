@@ -47,6 +47,9 @@ public class SaveMoneySetpdefs {
                 .add(new AccountOperation(Account.DEPOSIT,new Transaction(depositAmount,depositDate),account.getBalance()));
     }
 
-
+    @Then("An exception is thrown")
+    public void anExceptionIsThrown() {
+        Assert.assertThrows(UnauthorizedTransactionException.class,()->account.deposit(depositAmount));
+    }
 
 }
