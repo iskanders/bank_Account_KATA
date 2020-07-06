@@ -1,22 +1,69 @@
 package com.BankAccount.Kata.domain;
 
+/**
+ * Account operation class represents a line in the history
+ * of operations of an account.
+ *
+ * Each line contains the name of the operation, the transaction
+ * and the balance.
+ *
+ * It uses Lombok to create constructors and to implement builder design pattern
+ *
+ * */
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Builder
 public class AccountOperation {
 
-    public AccountOperation(String operationName, Transaction transaction,double balance){
+    private String operationName;
+    private Transaction transaction;
+    private double balance;
 
+    public void setBalance(double balance) {
+        this.balance = balance;
     }
 
+
+    /**
+     * Compares the argument to the receiver, and answers true
+     * if they represent the same transaction using a class
+     * specific comparison. The implementation in transaction answers
+     * true only if the argument is the exact same object as the
+     * receiver (equals).
+     *
+     * @param		object Object
+     *					the operation to compare with this operation.
+     * @return		boolean
+     *					true
+     *						if the operation name equal to this operation name and
+     *					    the operation transaction is equal to this transaction and
+     *					    the operation balance is equal to this balance
+     *					false
+     *						if it is different from this object.
+     */
     @Override
-    public boolean equals(Object o){return false;}
+    public boolean equals (Object object){
+        AccountOperation externOperation = (AccountOperation) object;
+        if(operationName.equals(externOperation.getOperationName())
+                && transaction.equals(externOperation.getTransaction())
+                && balance == externOperation.getBalance()) return true;
+        return false;
+    }
 
+
+    /**
+     * Answers a string containing a concise, human-readable
+     * description of this operation.
+     *
+     * @return		String
+     *					the name of this operation.
+     */
     @Override
-    public String toString(){return "";}
-
-    public Transaction getTransaction(){
-        return null;
-    }
-
-    public float getBalance(){
-        return -1;
-    }
+    public String toString(){return operationName;}
 }

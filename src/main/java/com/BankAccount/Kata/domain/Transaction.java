@@ -1,21 +1,40 @@
 package com.BankAccount.Kata.domain;
 
-import java.time.LocalDate;
+
+/**
+ * The transaction class used to execute the request operation
+ * from the client.
+ * It has 2 constructors, and it uses lombok library for the implementation.
+ *
+ * Attribute :
+ *   - amount : the amount of money of the transaction that can be
+ *              positive or negative according to the type of the operation.
+ *   - Date : the date and time of the transaction.
+ * */
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
 public class Transaction {
 
-    public Transaction(double amount, LocalDateTime depositDate){
+    private double amount;
+    private LocalDateTime depositDate;
+
+    /**
+     * Execute function used to operate the transaction
+     *
+     * @param balance the current balance of the account before execution transaction
+     * @return the new value of the balance after execution transaction
+     * */
+    public double execute(double balance){
+        return balance+amount;
     }
 
-    public double execute(double currentBalance){
-        return 0;
-    }
-
-    @Override
-    public boolean equals(Object o){return false;}
-
-    public double getValue(){
-        return 0;
+    public double getValue() {
+        return this.amount;
     }
 }

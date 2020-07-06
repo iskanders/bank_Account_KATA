@@ -15,17 +15,19 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import static com.BankAccount.Kata.domain.Account.LAST_OPERATION;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.verify;
 
 @CucumberContextConfiguration
 @RunWith(MockitoJUnitRunner.class)
 public class SaveMoneySetpdefs {
-    @Mock
-    private List<AccountOperation> mockedOperations;
+
+    @Mock private List<AccountOperation> mockedOperations;
     private Account account;
     double depositAmount;
 
@@ -38,14 +40,19 @@ public class SaveMoneySetpdefs {
     @When("^I deposit an amount of (\\d+) euro$")
     public void iDepositAnAmountOfEuro(int amount) {
         depositAmount = amount;
-        account.deposit(depositAmount);
+        try{
+            account.deposit(depositAmount);
+        }catch (UnauthorizedTransactionException e){
+
+        }
+
     }
 
     @Then("^A new transaction is recorded$")
     public void aNewTransactionIsRecorded() {
         LocalDateTime depositDate = LocalDateTime.now();
         verify(mockedOperations)
-                .add(new AccountOperation(Account.DEPOSIT,new Transaction(depositAmount,depositDate),account.getBalance()));
+                .add(eq(LAST_OPERATION),any(AccountOperation.class));
     }
 
     @Then("An exception is thrown")

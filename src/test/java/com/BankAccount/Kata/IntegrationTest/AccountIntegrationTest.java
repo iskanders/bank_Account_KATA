@@ -1,9 +1,11 @@
 package com.BankAccount.Kata.IntegrationTest;
 
+/**
+ *
+ * */
 import com.BankAccount.Kata.BaseTest;
 import com.BankAccount.Kata.domain.Account;
 import com.BankAccount.Kata.domain.AccountOperation;
-import com.BankAccount.Kata.domain.Transaction;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

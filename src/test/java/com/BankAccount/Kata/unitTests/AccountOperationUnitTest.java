@@ -10,6 +10,8 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import static org.mockito.Mockito.when;
+
 @RunWith(MockitoJUnitRunner.class)
 public class AccountOperationUnitTest {
     AccountOperation accountOperation;
@@ -23,12 +25,12 @@ public class AccountOperationUnitTest {
     @Test
     public void validequalsTest(){
         AccountOperation accountOperation1 = new AccountOperation(Account.DEPOSIT,transactionmock,20);
-        Assert.assertTrue(accountOperation1.equals(accountOperation1));
+        Assert.assertTrue(accountOperation.equals(accountOperation1));
     }
 
     @Test
     public void InvalidequalsTest(){
         AccountOperation accountOperation1 = new AccountOperation(Account.DEPOSIT,transactionmock,50);
-        Assert.assertFalse(accountOperation1.equals(accountOperation1));
+        Assert.assertFalse(accountOperation.equals(accountOperation1));
     }
 }

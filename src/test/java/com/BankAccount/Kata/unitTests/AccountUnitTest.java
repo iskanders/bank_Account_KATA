@@ -15,7 +15,9 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.List;
 
+import static com.BankAccount.Kata.domain.Account.LAST_OPERATION;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -28,20 +30,20 @@ public class AccountUnitTest {
 
     @Before
     public void initialise() {
-        account = new Account(operations);
+        account = new Account(operations,transaction);
     }
 
     @Test
     public void amountShouldBeAddedToBalance(){
-        when(transaction.execute(50)).thenReturn(50.0);
+        when(transaction.execute(0)).thenReturn(50.0);
         account.deposit(50);
         Assert.assertEquals(account.getBalance(),50, BaseTest.DELTA);
     }
 
     @Test
     public void lineShouldBeAddedToOperations(){
-        when(transaction.execute(50)).thenReturn(50.0);
+        when(transaction.execute(0)).thenReturn(50.0);
         account.deposit(50);
-        verify(operations).add(any(AccountOperation.class));
+        verify(operations).add(eq(LAST_OPERATION),any(AccountOperation.class));
     }
 }

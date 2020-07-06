@@ -6,7 +6,7 @@ Feature: Deposit money feature
     Then A new transaction is recorded
 
 
-  Scenario: saving money failed
+  Scenario: Saving money failed
     Given A valid account
     When I deposit an amount of 0 euro
     Then An exception is thrown

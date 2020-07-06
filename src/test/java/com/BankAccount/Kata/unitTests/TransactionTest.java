@@ -25,21 +25,4 @@ public class TransactionTest {
         Assert.assertEquals(balance,2550.20, BaseTest.DELTA);
     }
 
-    @Test
-    public void valideequalsTest(){
-        LocalDateTime currentDate = LocalDateTime.now();
-        transaction = new Transaction(20,currentDate);
-        Transaction transaction1 = new Transaction(20,currentDate);
-        Assert.assertTrue(transaction.equals(transaction1));
-    }
-
-    @Test
-    public void InvalideequalsTest(){
-        LocalDateTime currentDate = LocalDateTime.now();
-        transaction = new Transaction(20,currentDate);
-        Transaction transaction2 = new Transaction(30, LocalDateTime.now());
-        Assert.assertFalse(transaction.equals(transaction2));
-    }
-
-
 }
