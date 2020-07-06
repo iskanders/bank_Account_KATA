@@ -70,6 +70,8 @@ public class Account {
         history.add(LAST_OPERATION,operation);
     }
 
+    public void withdrawal(double amount){}
+
     public double getBalance(){
         return this.balance;
     }
