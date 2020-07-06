@@ -13,9 +13,10 @@ import org.junit.Assert;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.mockito.Mockito.verify;
@@ -42,7 +43,7 @@ public class SaveMoneySetpdefs {
 
     @Then("^A new transaction is recorded$")
     public void aNewTransactionIsRecorded() {
-        LocalDate depositDate = LocalDate.now();
+        LocalDateTime depositDate = LocalDateTime.now();
         verify(mockedOperations)
                 .add(new AccountOperation(Account.DEPOSIT,new Transaction(depositAmount,depositDate),account.getBalance()));
     }
