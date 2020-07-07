@@ -47,7 +47,7 @@ public class AccountUnitTest {
         // Add an amount of money to the account to avoid exception.
         account.deposit(50);
 
-        when(transaction.execute(50)).thenReturn(20.0);
+        when(transaction.execute(50)).thenReturn(30.0);
         account.withdrawal(20);
         Assert.assertEquals(account.getBalance(),30, BaseTest.DELTA);
     }

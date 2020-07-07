@@ -4,7 +4,7 @@ Feature: Retrieve  money feature
     Given A valid account
 
   Scenario: Successfully retrieve money
-    When I retrieve an amount of 50 euro
+    When I retrieve an amount of 20 euro
     Then A new retrieve transaction is recorded
 
 

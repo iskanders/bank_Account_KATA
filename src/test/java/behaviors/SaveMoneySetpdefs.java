@@ -18,13 +18,12 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.verify;
 
 
-@RunWith(Cucumber.class)
-@CucumberOptions(features= {"src/test/java/resources/DepositMoney.feature"})
 public class SaveMoneySetpdefs{
 
     Account account = BasicStepDefs.account;
     List<AccountOperation> mockedOperations = BasicStepDefs.mockedOperations;
     double depositAmount;
+
 
 
     @When("^I deposit an amount of (\\d+) euro$")

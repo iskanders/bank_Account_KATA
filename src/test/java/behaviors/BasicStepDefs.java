@@ -16,8 +16,6 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 import java.util.List;
 
-@RunWith(MockitoJUnitRunner.class)
-@CucumberContextConfiguration
 public class BasicStepDefs {
     @Mock
     public static List<AccountOperation> mockedOperations;
