@@ -19,7 +19,7 @@ public class TransactionTest {
 
     @Test
     public void executeTest(){
-        LocalDateTime currentDate = LocalDateTime.now();
+        LocalDate currentDate = LocalDate.now();
         transaction = new Transaction(50, currentDate);
         double balance = transaction.execute(2500.20);
         Assert.assertEquals(balance,2550.20, BaseTest.DELTA);

@@ -13,6 +13,9 @@ package com.BankAccount.Kata.domain;
  * */
 
 import com.BankAccount.Kata.Exceptions.UnauthorizedTransactionException;
+
+import java.io.PrintStream;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -21,6 +24,8 @@ public class Account {
     public final static int LAST_OPERATION = 0;
     public final static String  DEPOSIT = "deposit";
     public final static String  WITHDRAWAL = "withdrawal";
+    public static final String HISTORY_HEADER = "operation  |   date        |   amount  |   balance";
+
 
     public List<AccountOperation> history ;
     private double balance=0;
@@ -48,7 +53,7 @@ public class Account {
      * */
     public void deposit(double amount){
         if(amount<=0) throw new UnauthorizedTransactionException(DEPOSIT);
-        recordTransaction(amount,LocalDateTime.now(),DEPOSIT);
+        recordTransaction(amount,LocalDate.now(),DEPOSIT);
     }
 
 
@@ -64,7 +69,7 @@ public class Account {
      * */
     public void withdrawal(double amount){
         if(amount<=0 || amount > balance) throw new UnauthorizedTransactionException(WITHDRAWAL);
-        recordTransaction(-amount, LocalDateTime.now() , WITHDRAWAL);
+        recordTransaction((-1)*amount, LocalDate.now() , WITHDRAWAL);
     }
 
     /**
@@ -74,7 +79,7 @@ public class Account {
      * @param date the date and hour of the transaction
      * @param transactionName can be deposit or withdrawal
      * */
-    private void recordTransaction(double amount, LocalDateTime date, String transactionName) {
+    private void recordTransaction(double amount, LocalDate date, String transactionName) {
         currentTransaction = new Transaction(amount, date);
         balance = currentTransaction.execute(this.balance);
         if(transactionName.equals(WITHDRAWAL)) currentTransaction.setAmount(-1*amount);
@@ -86,7 +91,13 @@ public class Account {
         history.add(LAST_OPERATION,operation);
     }
 
-
+    public void println(PrintStream printer){
+        printer.println(HISTORY_HEADER);
+        for(int i=0;i<history.size();i++){
+            history.get(i).println(printer);
+        }
+        //history.forEach(elment->elment.println(printer));
+    }
 
     public double getBalance(){
         return this.balance;

@@ -15,6 +15,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.io.PrintStream;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -74,4 +76,18 @@ public class AccountOperation {
      */
     @Override
     public String toString(){return operationName;}
+
+    public void println(PrintStream printer){
+
+        StringBuilder builder = new StringBuilder();
+        builder.append(this.operationName);
+        builder.append(" |");
+        builder.append(this.transaction.getTransactionDate());
+        builder.append(" |");
+        builder.append(this.transaction.getValue());
+        builder.append(" |");
+        builder.append(this.balance);
+
+        printer.println(builder.toString());
+    }
 }

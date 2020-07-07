@@ -15,8 +15,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import java.time.LocalDate;
 
-import java.time.LocalDateTime;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -25,7 +25,7 @@ import java.time.LocalDateTime;
 public class Transaction {
 
     private double amount;
-    private LocalDateTime depositDate;
+    private LocalDate transactionDate;
 
     /**
      * Execute function used to operate the transaction

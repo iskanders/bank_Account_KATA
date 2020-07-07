@@ -3,8 +3,7 @@ package com.BankAccount.Kata;
 import com.BankAccount.Kata.domain.Transaction;
 import org.junit.Before;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @SpringBootTest
 public class BaseTest {
@@ -15,7 +14,7 @@ public class BaseTest {
 
     @Before
     public void init(){
-        transaction=new Transaction(50,LocalDateTime.now());
+        transaction=new Transaction(50, LocalDate.now());
     }
 
 }
