@@ -75,14 +75,14 @@ public class Account {
      * @param transactionName can be deposit or withdrawal
      * */
     private void recordTransaction(double amount, LocalDateTime date, String transactionName) {
-        currentTransaction = currentTransaction==null ? new Transaction(amount, date) : currentTransaction;
+        currentTransaction = new Transaction(amount, date);
+        balance = currentTransaction.execute(this.balance);
+        if(transactionName.equals(WITHDRAWAL)) currentTransaction.setAmount(-1*amount);
         AccountOperation operation = AccountOperation.builder()
                 .operationName(transactionName)
                 .transaction(currentTransaction)
                 .balance(getBalance())
                 .build();
-        balance = currentTransaction.execute(this.balance);
-        operation.setBalance(balance);
         history.add(LAST_OPERATION,operation);
     }
 
