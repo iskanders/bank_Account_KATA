@@ -81,11 +81,12 @@ public class AccountOperation {
 
         StringBuilder builder = new StringBuilder();
         builder.append(this.operationName);
-        builder.append(" |");
+        if(operationName.equals(Account.DEPOSIT)) builder.append("    | ");
+        else builder.append(" | ");
         builder.append(this.transaction.getTransactionDate());
-        builder.append(" |");
+        builder.append("    | ");
         builder.append(this.transaction.getValue());
-        builder.append(" |");
+        builder.append("      | ");
         builder.append(this.balance);
 
         printer.println(builder.toString());

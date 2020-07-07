@@ -91,12 +91,19 @@ public class Account {
         history.add(LAST_OPERATION,operation);
     }
 
+    /**
+     * Prints the histories operations. The history produced by the operations
+     * are printed in io.PrintStream using this method.
+     *
+     * @param      printer   The print stream is the object where we will write histories
+     *
+     * @see        com.BankAccount.Kata.domain.AccountOperation#println()
+     */
     public void println(PrintStream printer){
         printer.println(HISTORY_HEADER);
         for(int i=0;i<history.size();i++){
             history.get(i).println(printer);
         }
-        //history.forEach(elment->elment.println(printer));
     }
 
     public double getBalance(){
