@@ -50,7 +50,22 @@ public class Account {
         if(amount<=0) throw new UnauthorizedTransactionException(DEPOSIT);
         recordTransaction(amount,LocalDateTime.now(),DEPOSIT);
     }
-    
+
+
+    /**
+     * This function is the entry point for the withdrawal operation
+     *
+     * @param amount the amount of money to retrieve
+     * @throws UnauthorizedTransactionException if
+     *                                             - The amount to be retrieved is negative or zero.
+     *                                             - The amount is grater than the balance.
+     *
+     * @see #recordTransaction
+     * */
+    public void withdrawal(double amount){
+        if(amount<=0 || amount > balance) throw new UnauthorizedTransactionException(WITHDRAWAL);
+        recordTransaction(-amount, LocalDateTime.now() , WITHDRAWAL);
+    }
 
     /**
      * recordTransaction method operate and save the transaction
@@ -62,7 +77,7 @@ public class Account {
     private void recordTransaction(double amount, LocalDateTime date, String transactionName) {
         currentTransaction = currentTransaction==null ? new Transaction(amount, date) : currentTransaction;
         AccountOperation operation = AccountOperation.builder()
-                .operationName(Account.DEPOSIT)
+                .operationName(transactionName)
                 .transaction(currentTransaction)
                 .balance(getBalance())
                 .build();
@@ -71,7 +86,7 @@ public class Account {
         history.add(LAST_OPERATION,operation);
     }
 
-    public void withdrawal(double amount){}
+
 
     public double getBalance(){
         return this.balance;
