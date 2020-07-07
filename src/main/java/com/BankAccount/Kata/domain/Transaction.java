@@ -14,6 +14,8 @@ package com.BankAccount.Kata.domain;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @NoArgsConstructor
@@ -22,7 +24,7 @@ import java.time.LocalDateTime;
 public class Transaction {
 
     private double amount;
-    private LocalDateTime depositDate;
+    private LocalDate depositDate;
 
     /**
      * Execute function used to operate the transaction

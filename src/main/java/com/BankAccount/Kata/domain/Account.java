@@ -13,6 +13,9 @@ package com.BankAccount.Kata.domain;
  * */
 
 import com.BankAccount.Kata.Exceptions.UnauthorizedTransactionException;
+
+import java.io.PrintStream;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -48,7 +51,7 @@ public class Account {
      * */
     public void deposit(double amount){
         if(amount<=0) throw new UnauthorizedTransactionException(DEPOSIT);
-        recordTransaction(amount,LocalDateTime.now(),DEPOSIT);
+        recordTransaction(amount,LocalDate.now(),DEPOSIT);
     }
 
 
@@ -64,7 +67,7 @@ public class Account {
      * */
     public void withdrawal(double amount){
         if(amount<=0 || amount > balance) throw new UnauthorizedTransactionException(WITHDRAWAL);
-        recordTransaction(-amount, LocalDateTime.now() , WITHDRAWAL);
+        recordTransaction(-amount, LocalDate.now() , WITHDRAWAL);
     }
 
     /**
@@ -74,7 +77,7 @@ public class Account {
      * @param date the date and hour of the transaction
      * @param transactionName can be deposit or withdrawal
      * */
-    private void recordTransaction(double amount, LocalDateTime date, String transactionName) {
+    private void recordTransaction(double amount, LocalDate date, String transactionName) {
         currentTransaction = currentTransaction==null ? new Transaction(amount, date) : currentTransaction;
         AccountOperation operation = AccountOperation.builder()
                 .operationName(transactionName)
@@ -86,7 +89,7 @@ public class Account {
         history.add(LAST_OPERATION,operation);
     }
 
-
+    public void println(PrintStream printer){}
 
     public double getBalance(){
         return this.balance;
