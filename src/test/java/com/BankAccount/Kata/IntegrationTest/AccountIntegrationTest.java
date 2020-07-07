@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.BankAccount.Kata.domain.Account.LAST_OPERATION;
+import static org.mockito.Mockito.when;
 
 public class AccountIntegrationTest extends BaseTest{
 
@@ -36,4 +37,18 @@ public class AccountIntegrationTest extends BaseTest{
         Assert.assertEquals(operation.getTransaction().getValue(),this.transaction.getValue(),BaseTest.DELTA);
         Assert.assertEquals(operation.getBalance(),account.getBalance(),BaseTest.DELTA);
     }
+
+    @Test
+    public void WithdrawalTest(){
+
+        // Add an amount of money to the account to avoid exception.
+        account.deposit(50);
+
+
+        account.withdrawal(20);
+        AccountOperation operation = operations.get(LAST_OPERATION);
+
+        Assert.assertEquals(operation.toString(),Account.WITHDRAWAL);
+        Assert.assertEquals(operation.getTransaction().getValue(),this.transaction.getValue(),BaseTest.DELTA);
+        Assert.assertEquals(operation.getBalance(),account.getBalance(),BaseTest.DELTA);    }
 }

@@ -49,7 +49,15 @@ public class AccountOperation {
      */
     @Override
     public boolean equals (Object object){
+        if (this == object)
+            return true;
         AccountOperation externOperation = (AccountOperation) object;
+        if(transaction==null)
+            if(externOperation.getTransaction()!=null)
+                return false;
+        if(operationName==null)
+            if(externOperation.getOperationName()!=null)
+                return false;
         if(operationName.equals(externOperation.getOperationName())
                 && transaction.equals(externOperation.getTransaction())
                 && balance == externOperation.getBalance()) return true;
