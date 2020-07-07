@@ -10,6 +10,6 @@ Feature: Check operations feature
 
 
   Scenario: Print withdrawal money operation
-    When I withdrawal an amount of 30 euro to the account
+    When I withdrawal an amount of 50 euro to the account
     And print the last operation
     Then A new withdrawal line should be printed

@@ -34,7 +34,7 @@ public class AccountIntegrationTest extends BaseTest{
 
         Assert.assertEquals(operation.toString(),Account.DEPOSIT);
         Assert.assertEquals(operation.getTransaction().getValue(),this.transaction.getValue(),BaseTest.DELTA);
-        Assert.assertEquals(operation.getBalance(),account.getBalance(),BaseTest.DELTA);
+        Assert.assertEquals(50,account.getBalance(),BaseTest.DELTA);
     }
 
     @Test
@@ -48,8 +48,8 @@ public class AccountIntegrationTest extends BaseTest{
         AccountOperation operation = operations.get(LAST_OPERATION);
 
         Assert.assertEquals(operation.toString(),Account.WITHDRAWAL);
-        Assert.assertEquals(operation.getTransaction().getValue(),this.transaction.getValue(),BaseTest.DELTA);
-        Assert.assertEquals(operation.getBalance(),account.getBalance(),BaseTest.DELTA);
+        Assert.assertEquals(operation.getTransaction().getValue(),20,BaseTest.DELTA);
+        Assert.assertEquals(30,account.getBalance(),BaseTest.DELTA);
     }
 
 }

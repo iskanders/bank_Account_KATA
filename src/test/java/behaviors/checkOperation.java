@@ -42,8 +42,7 @@ public class checkOperation {
     public void aNewDepositLineShouldBePrinted() {
         InOrder inOrder = Mockito.inOrder(printer);
         inOrder.verify(printer).println("operation  |   date        |   amount  |   balance");
-        inOrder.verify(printer).println("deposit    |   "+ LocalDate.now().toString() +"  |   50.0    |   50.0");
-    }
+        inOrder.verify(printer).println("deposit |"+ LocalDate.now().toString() +" |50.0 |50.0");    }
 
 
     @When("I withdrawal an amount of {int} euro to the account")
@@ -51,14 +50,14 @@ public class checkOperation {
         //To avoid exception
         account.deposit(amount);
 
-        account.withdrawal(amount);
+        account.withdrawal(amount-20);
     }
 
     @Then("A new withdrawal line should be printed")
     public void aNewWithdrawalLineShouldBePrinted() {
         InOrder inOrder = Mockito.inOrder(printer);
         inOrder.verify(printer).println("operation  |   date        |   amount  |   balance");
-        inOrder.verify(printer).println("withdrawal |   "+ LocalDate.now().toString() +"  |   30.0    |   20.0");
-        inOrder.verify(printer).println("deposit    |   "+ LocalDate.now().toString() +"  |   50.0    |   50.0");
+        inOrder.verify(printer).println("withdrawal |"+ LocalDate.now().toString() +" |30.0 |20.0");
+        inOrder.verify(printer).println("deposit |"+ LocalDate.now().toString() +" |50.0 |50.0");
     }
 }

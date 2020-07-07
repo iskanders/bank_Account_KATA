@@ -69,7 +69,7 @@ public class Account {
      * */
     public void withdrawal(double amount){
         if(amount<=0 || amount > balance) throw new UnauthorizedTransactionException(WITHDRAWAL);
-        recordTransaction(-amount, LocalDate.now() , WITHDRAWAL);
+        recordTransaction((-1)*amount, LocalDate.now() , WITHDRAWAL);
     }
 
     /**
@@ -80,18 +80,24 @@ public class Account {
      * @param transactionName can be deposit or withdrawal
      * */
     private void recordTransaction(double amount, LocalDate date, String transactionName) {
-        currentTransaction = currentTransaction==null ? new Transaction(amount, date) : currentTransaction;
+        currentTransaction = new Transaction(amount, date);
+        balance = currentTransaction.execute(this.balance);
+        if(transactionName.equals(WITHDRAWAL)) currentTransaction.setAmount(-1*amount);
         AccountOperation operation = AccountOperation.builder()
                 .operationName(transactionName)
                 .transaction(currentTransaction)
                 .balance(getBalance())
                 .build();
-        balance = currentTransaction.execute(this.balance);
-        operation.setBalance(balance);
         history.add(LAST_OPERATION,operation);
     }
 
-    public void println(PrintStream printer){}
+    public void println(PrintStream printer){
+        printer.println(HISTORY_HEADER);
+        for(int i=0;i<history.size();i++){
+            history.get(i).println(printer);
+        }
+        //history.forEach(elment->elment.println(printer));
+    }
 
     public double getBalance(){
         return this.balance;

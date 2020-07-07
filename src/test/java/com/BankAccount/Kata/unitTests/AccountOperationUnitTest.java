@@ -47,7 +47,7 @@ public class AccountOperationUnitTest {
                 .build();
 
         accountOperation.println(printer);
-        verify(printer).println("withdrawal |   "+ LocalDate.now().toString() +"  |   1000.0    |   1050.0");
+        verify(printer).println("withdrawal |"+ LocalDate.now().toString() +" |1000.0 |1050.0");
     }
 
     @Test public void
@@ -58,6 +58,6 @@ public class AccountOperationUnitTest {
                 .build();
 
         accountOperation.println(printer);
-        verify(printer).println("deposit |   "+ LocalDate.now().toString() +"  |   1000.0    |   3050.0");
+        verify(printer).println("deposit |"+ LocalDate.now().toString() +" |1000.0 |3050.0");
     }
 }
