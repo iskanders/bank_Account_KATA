@@ -13,19 +13,19 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.io.PrintStream;
 import java.util.List;
 
 import static com.BankAccount.Kata.domain.Account.LAST_OPERATION;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class AccountUnitTest {
 
     @Mock List<AccountOperation> operations;
     @Mock Transaction transaction;
+    @Mock PrintStream printer;
     Account account;
 
     @Before
@@ -59,7 +59,13 @@ public class AccountUnitTest {
         verify(operations).add(eq(LAST_OPERATION),any(AccountOperation.class));
     }
 
+    @Test public void
+    printAllOperationsTest() {
 
+        account.println(printer);
 
+        verify(printer).println(Account.HISTORY_HEADER);
+        verify(operations,times(operations.size())).get(anyInt()).println(printer);
+    }
 
 }

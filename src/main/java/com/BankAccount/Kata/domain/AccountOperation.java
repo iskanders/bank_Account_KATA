@@ -15,6 +15,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.io.PrintStream;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -74,4 +76,6 @@ public class AccountOperation {
      */
     @Override
     public String toString(){return operationName;}
+
+    public void println(PrintStream printStream){}
 }

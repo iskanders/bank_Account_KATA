@@ -24,6 +24,8 @@ public class Account {
     public final static int LAST_OPERATION = 0;
     public final static String  DEPOSIT = "deposit";
     public final static String  WITHDRAWAL = "withdrawal";
+    public static final String HISTORY_HEADER = "operation  |   date        |   amount  |   balance";
+
 
     public List<AccountOperation> history ;
     private double balance=0;
